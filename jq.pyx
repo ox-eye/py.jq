@@ -228,7 +228,7 @@ cdef class _Program(object):
     def input(self, value=_NO_VALUE, text=_NO_VALUE):
         if (value is _NO_VALUE) == (text is _NO_VALUE):
             raise ValueError("Either the value or text argument should be set")
-        string_input = text if text is not _NO_VALUE else json.dumps(value)
+        string_input = text if text is not _NO_VALUE else json.dumps(value, default=str)
 
         return _ProgramWithInput(self._jq_state_pool, string_input.encode("utf8"))
 
